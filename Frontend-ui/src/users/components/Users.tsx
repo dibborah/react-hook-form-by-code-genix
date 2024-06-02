@@ -3,11 +3,17 @@ import { Stack, TextField } from '@mui/material';
 import { Schema } from '../types/schema';
 import RHFAutocomplete from '../../components/RHFAutocomplete';
 import { useEffect } from 'react';
+import { useStates } from '../services/queries';
 
 // testing commit 
 
 const Users = () => {
-    const { register, formState: { errors }, watch } = useFormContext<Schema>();
+    const statesQuery = useStates();
+    const { 
+        register,
+        formState: { errors },
+        watch 
+    } = useFormContext<Schema>();
 
     useEffect(() => {
         const sub = watch((value) => {
@@ -35,10 +41,7 @@ const Users = () => {
             <RHFAutocomplete<Schema>
                 name='states'
                 label='states'
-                options={[
-                    { id: '1', label: 'california' },
-                    { id: '2', label: 'texas' },
-                ]}
+                options={statesQuery?.data}
             />
         </Stack>
         // Why useFormContext in RHF is called an API
