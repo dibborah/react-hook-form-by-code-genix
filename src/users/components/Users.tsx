@@ -4,7 +4,7 @@ import { Schema } from '../types/schema';
 import RHFAutocomplete from '../../components/RHFAutocomplete';
 
 const Users = () => {
-    const {register, formState: {errors}} = useFormContext<Schema>();
+    const { register, formState: { errors } } = useFormContext<Schema>();
 
     // stack in MUI is display flex with column
     return (
@@ -22,7 +22,14 @@ const Users = () => {
                 error={!!errors?.email}
                 helperText={errors.email?.message}
             />
-            <RHFAutocomplete<Schema> name='states' />
+            <RHFAutocomplete<Schema>
+              name='states'
+              label='states'
+              options={[
+                { id: '1', label: 'california' },
+                { id: '2', label: 'texas' },
+              ]}
+            />
         </Stack>
         // Why useFormContext in RHF is called an API
     );
