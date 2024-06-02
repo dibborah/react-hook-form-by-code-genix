@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import UsersProvider from "./users/components/UsersProvider";
 
-
 const App = () => {
   const queryClient = new QueryClient();
   return (
