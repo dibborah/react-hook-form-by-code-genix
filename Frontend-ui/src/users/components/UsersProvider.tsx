@@ -2,6 +2,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { Schema, defaultValues, schema } from "../types/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Users from "./Users";
+import { DevTool } from '@hookform/devtools';
 
 const UsersProvider = () => {
     const methods = useForm<Schema>({
@@ -11,7 +12,8 @@ const UsersProvider = () => {
     });
     return (
         <FormProvider {...methods}>
-          <Users />
+            <Users />
+            <DevTool control={methods.control}/>
         </FormProvider>
     )
 }
