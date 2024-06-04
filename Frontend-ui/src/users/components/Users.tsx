@@ -3,14 +3,18 @@ import { Stack, TextField } from '@mui/material';
 import { Schema } from '../types/schema';
 import RHFAutocomplete from '../../components/RHFAutocomplete';
 import { useEffect } from 'react';
-import { useLanguages, useStates } from '../services/queries';
+import { useGenders, useLanguages, useSkills, useStates } from '../services/queries';
 import RHFToggleButtonGroup from '../../components/RHFToggleButtonGroup';
+import RHFRadioGroup from '../../components/RHFRadioGroup';
+import RHFCheckbox from '../../components/RHFCheckbox';
 
 // testing commit 
 
 const Users = () => {
     const statesQuery = useStates();
     const languagesQuery = useLanguages();
+    const genderQuery = useGenders();
+    const skillsQuery = useSkills();
     const {
         register,
         formState: { errors },
@@ -48,6 +52,16 @@ const Users = () => {
             <RHFToggleButtonGroup<Schema>
                 name='languagesSpoken'
                 options={languagesQuery?.data}
+            />
+            <RHFRadioGroup<Schema>
+                name='gender'
+                options={genderQuery?.data}
+                label='Gender'
+            />
+            <RHFCheckbox<Schema>
+                name='skills'
+                options={skillsQuery.data}
+                label='Skills'
             />
         </Stack>
         // Why useFormContext in RHF is called an API
